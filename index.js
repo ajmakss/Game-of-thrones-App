@@ -20,6 +20,12 @@ class GotService {
     getCharacter(id) {
         return this.getResourse(`/characters/${id}`);
     }
+    getAllBooks(){
+        return this.getResourse(`/books`);
+    }
+    getAllHouses(){
+        return this.getResourse(`/houses`);
+    }
 
 }
 
@@ -31,4 +37,10 @@ got.getAllCharacters()
     });
 
 got.getCharacter(130)
+    .then(res => console.log(res));
+
+got.getAllBooks()
+    .then(res => console.log(res));
+
+got.getAllHouses()
     .then(res => console.log(res));

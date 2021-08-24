@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import styled from 'styled-components';
 
 const CharDetail = styled.div `
