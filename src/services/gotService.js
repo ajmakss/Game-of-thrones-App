@@ -17,6 +17,10 @@ import { words } from "lodash";
         return await res.json();
     }
 
+    isData = (d) => {
+        return d ? d : 'secret';
+
+    }
     getAllCharacters = async () => {
         const result = await this.getResourse('/characters?page=5&pageSize=10"');
         return result.map(this._transformCharacter)
@@ -27,7 +31,7 @@ import { words } from "lodash";
     }
 
     getAllBooks = async () =>{
-        const res = await this.getResourse(`/books/`);
+        const res = await this.getResourse(`/books`);
         return res.map(this._transformBook)
     }
     getBook = async (id) => {
@@ -46,30 +50,30 @@ import { words } from "lodash";
 
     _transformCharacter = (char, i) => {
         return {
-            name: char.name || 'secret',
-            gender: char.gender || 'secret',
-            born: char.born || 'secret',
-            died: char.died || 'secret',
-            culture: char.culture || 'secret',
+            name: this.isData(char.name),
+            gender: this.isData(char.gender),
+            born: this.isData(char.born),
+            died: this.isData(char.died),
+            culture: this.isData(char.culture),
             id: i + 41
         }
     }
     _transformHouse = (house) =>{
         return {
-            name: house.name ,
-            region: house.region,
-            words: house.words,
-            titles: house.titles,
-            overlord: house.overlord,
-            ancestralWeapons: house.ancestralWeapons
+            name: this.isData(house.name) ,
+            region: this.isData(house.region),
+            words: this.isData(house.words),
+            titles: this.isData(house.titles),
+            overlord: this.isData(house.overlord),
+            ancestralWeapons: this.isData(house.ancestralWeapons)
         }
     }
     _transformBook = (book) => {
         return {
-            name: book.name,
-            numberOfPages: book.numberOfPages,
-            publiser: book.publiser,
-            released: book.released
+            name: this.isData(book.name),
+            numberOfPages: this.isData(book.numberOfPages),
+            publiser: this.isData(book.publiser),
+            released: this.isData(book.released)
         }
     }
 }

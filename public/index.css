@@ -4,10 +4,13 @@
 	padding: 0;
     outline: none;
 }
+html {
+    min-height: 100vh;
+}
 body {
     overflow-x: hidden;
-    background: url('img/got.jpeg') center center no-repeat;
+    background: url('img/bg.jpg') center center/cover no-repeat;
     background-size: cover;
     font-size: 16px;
-    height: 100%;	
+    min-height: 100%;	
 }
