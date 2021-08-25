@@ -7,7 +7,7 @@ import { words } from "lodash";
         this._apiBase = 'https://www.anapioficeandfire.com/api';
     }
 
-    async getResourse(url){
+     getResourse = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
 
         if (!res.ok) {
@@ -15,41 +15,46 @@ import { words } from "lodash";
         }
 
         return await res.json();
-    };
+    }
 
-    async getAllCharacters() {
-        const result = await this.getResourse('/characters?page5&pageSize=10');
+    getAllCharacters = async () => {
+        const result = await this.getResourse('/characters?page=5&pageSize=10"');
         return result.map(this._transformCharacter)
     }
-    async getCharacter(id) {
+    getCharacter = async (id) => {
         const character = await this.getResourse(`/characters/${id}`);
         return this._transformCharacter(character);
     }
 
-    getAllBooks(){
-        return this.getResourse(`/books`);
+    getAllBooks = async () =>{
+        const res = await this.getResourse(`/books/`);
+        return res.map(this._transformBook)
     }
-    getBook(id) {
-        return this.getResourse(`/books/${id}`);
-    }
-
-    getAllHouses(){
-        return this.getResourse(`/houses`);
-    }
-    getHouse(id) {
-        return this.getResourse(`/houses/${id}`);
+    getBook = async (id) => {
+        const book = await this.getResourse(`/books/${id}`);
+        return this._transformBook(book);
     }
 
-    _transformCharacter(char) {
+    getAllHouses = async () =>{
+        const res = await this.getResourse(`/houses`);
+        return res.map(this._transformHouse)
+    }
+    getHouse = async (id) => {
+        const house = await this.getResourse(`/houses/${id}`);
+        return this._transformHouse(house);
+    }
+
+    _transformCharacter = (char, i) => {
         return {
             name: char.name || 'secret',
             gender: char.gender || 'secret',
             born: char.born || 'secret',
             died: char.died || 'secret',
-            culture: char.culture || 'secret'
+            culture: char.culture || 'secret',
+            id: i + 41
         }
     }
-    _transformHouse(house){
+    _transformHouse = (house) =>{
         return {
             name: house.name ,
             region: house.region,
@@ -59,7 +64,7 @@ import { words } from "lodash";
             ancestralWeapons: house.ancestralWeapons
         }
     }
-    _transformBook(book) {
+    _transformBook = (book) => {
         return {
             name: book.name,
             numberOfPages: book.numberOfPages,

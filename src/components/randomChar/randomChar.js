@@ -18,20 +18,23 @@ const Term = styled.span`
     font-weight: bold;
 `;
 export default class RandomChar extends Component {
-   
-    constructor(props) {
-        super(props);
-        this.updateChar();
-    }
-    
+
     gotService = new gotService();
 
     state =  {
         char: {},
         loading: true,
-        error: false
+        error: false,
     }
 
+    componentDidMount() {
+        this.updateChar();
+        this.timerId = setInterval(this.updateChar, 1500);
+    }
+    componentWillUnmount() {
+        clearInterval(this.timerId)
+    }
+    
     onCharLoaded = (char) => {
         this.setState({
             char, 
@@ -45,7 +48,9 @@ export default class RandomChar extends Component {
             loading: false
         })
     }
-    updateChar() {
+
+    updateChar = () => {
+        console.log('uppdate');
         const id = Math.floor(Math.random()*140 + 25);
         this.gotService.getCharacter(id)
             .then(this.onCharLoaded)
