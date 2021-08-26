@@ -1,6 +1,4 @@
-import { region } from "caniuse-lite";
-import { words } from "lodash";
-
+import moment from "moment";
  export default class GotService {
 
     constructor() {
@@ -58,13 +56,14 @@ import { words } from "lodash";
             id: i + 41
         }
     }
+
+
     _transformHouse = (house) =>{
         return {
             name: this.isData(house.name) ,
             region: this.isData(house.region),
             words: this.isData(house.words),
             titles: this.isData(house.titles),
-            overlord: this.isData(house.overlord),
             ancestralWeapons: this.isData(house.ancestralWeapons)
         }
     }
@@ -73,7 +72,10 @@ import { words } from "lodash";
             name: this.isData(book.name),
             numberOfPages: this.isData(book.numberOfPages),
             publiser: this.isData(book.publiser),
-            released: this.isData(book.released)
+            released: (() => {
+                const date = moment(book.released).format('MM/DD/YYYY');
+                return date;
+            })()
         }
     }
 }

@@ -14,6 +14,7 @@ const Field = ({item, field, label}) => {
 const ItemDetail = styled.div `
 background-color: #fff;
 padding: 25px 25px 15px 25px;
+margin-top: 10px;
 margin-bottom: 40px;
     h4 {
         margin-bottom: 20px;
@@ -72,7 +73,7 @@ export default class ItemDetails extends Component {
         return (
             <ItemDetail>
                 <h4>{name}</h4>
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush mt20">
                    {
                        React.Children.map(this.props.children, (child) => {
                             return React.cloneElement(child, {item})

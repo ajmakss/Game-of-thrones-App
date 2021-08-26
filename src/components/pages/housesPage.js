@@ -1,5 +1,4 @@
 import React from 'react';
-import {Col, Row, Container} from 'reactstrap';
 import ItemList from '../itemList';
 import CharDetails, {Field} from '../charDetails';
 import ErrorMessage from '../errorMessage';
@@ -47,9 +46,6 @@ export default class HousesPage extends React.Component {
             <Field field='name' label='Name'/>
             <Field field='region' label='Region'/>
             <Field field='words' label='Words'/>
-            <Field field='titles' label='Titles'/>
-            <Field field='overlord' label='Overlord'/>
-            <Field field='ancestralWeapons' label='Ancestral Weapons'/>
         </CharDetails>
     )
 

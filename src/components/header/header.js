@@ -31,7 +31,7 @@ const Header = () => {
     return (
         <HeaderBlock>
             <HeaderTitle>
-                <Link exact to='/'>
+                <Link to='/'>
                 Game of Thrones DB
                 </Link>
             </HeaderTitle>

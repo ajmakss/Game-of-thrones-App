@@ -8,6 +8,7 @@ import ErrorMessage from '../errorMessage';
 const RandomBlock = styled.div`
     background-color: #fff;
     padding: 25px 25px 15px 25px;
+    margin-top: 20px;
     margin-bottom: 40px;
     h4 {
         margin-bottom: 20px;
@@ -29,7 +30,7 @@ export default class RandomChar extends Component {
 
     componentDidMount() {
         this.updateChar();
-        this.timerId = setInterval(this.updateChar, 1500);
+        this.timerId = setInterval(this.updateChar, 10000);
     }
     componentWillUnmount() {
         clearInterval(this.timerId)
@@ -50,7 +51,6 @@ export default class RandomChar extends Component {
     }
 
     updateChar = () => {
-        console.log('uppdate');
         const id = Math.floor(Math.random()*140 + 25);
         this.gotService.getCharacter(id)
             .then(this.onCharLoaded)
